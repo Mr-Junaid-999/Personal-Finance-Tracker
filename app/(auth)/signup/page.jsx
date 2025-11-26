@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/server";
+import createClient from "@/lib/server";
 import { redirect } from "next/navigation";
 import Input from "@/components/ui/input";
 import PasswordInput from "@/components/ui/passwordInput";

@@ -167,7 +167,7 @@ export default function TransactionForm({ transaction, categories, onClose }) {
   return (
     <div className="fixed inset-0 bg-transparent  flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-md w-full p-6 border shadow shadow-gray-200">
-        <h2 className="text-xl font-bold mb-4 text-gray-500">
+        <h2 className="text-xl font-bold mb-4 text-gray-800">
           {transaction ? "Edit Transaction" : "Add Transaction"}
         </h2>
 
@@ -189,9 +189,9 @@ export default function TransactionForm({ transaction, categories, onClose }) {
                       category_id: "",
                     })
                   }
-                  className="text-primary-600 focus:ring-primary-500"
+                  className="text-primary-600 focus:ring-primary-500 "
                 />
-                <span className="ml-2">Expense</span>
+                <span className="ml-2 text-gray-600">Expense</span>
               </label>
               <label className="inline-flex items-center">
                 <input
@@ -207,7 +207,7 @@ export default function TransactionForm({ transaction, categories, onClose }) {
                   }
                   className="text-primary-600 focus:ring-primary-500"
                 />
-                <span className="ml-2">Income</span>
+                <span className="ml-2 text-gray-600">Income</span>
               </label>
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function TransactionForm({ transaction, categories, onClose }) {
               onChange={(e) =>
                 setFormData({ ...formData, amount: e.target.value })
               }
-              className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+              className="mt-1 p-2 text-gray-600 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
               placeholder="0.00"
             />
           </div>
@@ -238,7 +238,7 @@ export default function TransactionForm({ transaction, categories, onClose }) {
               onChange={(e) =>
                 setFormData({ ...formData, category_id: e.target.value })
               }
-              className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+              className="mt-1 p-2 text-gray-600 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
               required
             >
               <option value="">Select a category</option>
@@ -268,7 +268,7 @@ export default function TransactionForm({ transaction, categories, onClose }) {
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
               }
-              className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+              className="mt-1 p-2 text-gray-600 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
               placeholder="Transaction description"
               required
             />
@@ -285,7 +285,7 @@ export default function TransactionForm({ transaction, categories, onClose }) {
               onChange={(e) =>
                 setFormData({ ...formData, date: e.target.value })
               }
-              className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+              className="mt-1 p-2 text-gray-600 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
             />
           </div>
 
@@ -318,7 +318,7 @@ export default function TransactionForm({ transaction, categories, onClose }) {
                     recurring_frequency: e.target.value,
                   })
                 }
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                className="mt-1 p-2 text-gray-600 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
               >
                 <option value="daily">Daily</option>
                 <option value="weekly">Weekly</option>

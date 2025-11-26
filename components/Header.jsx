@@ -1,11 +1,23 @@
-// components/Header.js
-"use client";
-import { supabase } from "@/lib/client";
-import { useRouter } from "next/navigation";
-import Logout from "./UI/Logout_Action";
+// components/Header.js (SERVER COMPONENT - FIXED)
+import createClient from "@/lib/server";
+import LogoutButton from "./UI/LogoutButton";
 
-export default function Header({ user }) {
-  console.log("user", user);
+export default async function Header() {
+  const supabase = await createClient();
+
+  // Fetch user data on server
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // ✅ Only pass serializable data to client components
+  const userData = user
+    ? {
+        email: user.email,
+        // Add only the fields you need, avoid passing the entire user object
+      }
+    : null;
+
   return (
     <header className="bg-white shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,23 +29,26 @@ export default function Header({ user }) {
             <nav className="ml-10 flex space-x-8">
               <a
                 href="/dashboard"
-                className="text-gray-500 hover:text-gray-900"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
               >
                 Dashboard
               </a>
               <a
                 href="/transactions"
-                className="text-gray-500 hover:text-gray-900"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
               >
                 Transactions
               </a>
               <a
                 href="/categories"
-                className="text-gray-500 hover:text-gray-900"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
               >
                 Categories
               </a>
-              <a href="/budgets" className="text-gray-500 hover:text-gray-900">
+              <a
+                href="/budgets"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
+              >
                 Budgets
               </a>
             </nav>
@@ -41,14 +56,9 @@ export default function Header({ user }) {
 
           <div className="flex items-center space-x-4">
             <span className="text-sm text-gray-700">
-              Welcome, {user?.email}
+              Welcome, {user?.email || "Guest"}
             </span>
-            <button
-              onClick={Logout}
-              className="hover:bg-blue-500  bg-blue-400 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-700"
-            >
-              Sign Out
-            </button>
+            <LogoutButton userEmail={user?.email} />
           </div>
         </div>
       </div>

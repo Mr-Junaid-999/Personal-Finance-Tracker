@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/lib/server";
+import createClient from "@/lib/server";
 import { redirect } from "next/navigation";
 
 export default async function handleSignup(formData) {

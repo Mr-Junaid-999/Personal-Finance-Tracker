@@ -1,7 +1,7 @@
 //app/login/action.js
 "use server";
 
-import { createClient } from "@/lib/server";
+import createClient from "@/lib/server";
 import { redirect } from "next/navigation";
 
 export default async function handleLogin(formData) {
@@ -37,7 +37,7 @@ export default async function handleLogin(formData) {
   // If there are validation errors
   if (Object.keys(errors).length > 0) {
     const errorMessage = Object.values(errors)[0];
-    redirect(`/login?error=${encodeURIComponent(errorMessage)}`);
+    redirect(`/signin?error=${encodeURIComponent(errorMessage)}`);
   }
 
   try {
@@ -57,11 +57,11 @@ export default async function handleLogin(formData) {
         userFriendlyError = "Please verify your email first";
       }
 
-      redirect(`/login?error=${encodeURIComponent(userFriendlyError)}`);
+      redirect(`/signin?error=${encodeURIComponent(userFriendlyError)}`);
     }
   } catch (error) {
     redirect(
-      `/login?error=${encodeURIComponent(
+      `/signin?error=${encodeURIComponent(
         "Something went wrong. Please try again."
       )}`
     );

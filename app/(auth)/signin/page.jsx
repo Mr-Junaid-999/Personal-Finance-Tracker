@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/server";
+import createClient from "@/lib/server";
 import { redirect } from "next/navigation";
 import Input from "@/components/ui/input";
 import PasswordInput from "@/components/ui/passwordInput";
@@ -9,11 +9,12 @@ export default async function login({ searchParams }) {
   const params = await searchParams;
   const error = params.error;
   const success = params.success;
-  const supabaseServer = await createClient();
+  const supabase = await createClient();
   const {
-    data: { session },
-  } = await supabaseServer.auth.getSession();
-  if (session) {
+    data: { user },
+  } = await supabase.auth.getUser();
+  // console.log("/login user", user);
+  if (user) {
     redirect("/dashboard");
   }
   return (
